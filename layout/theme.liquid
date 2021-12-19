@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
+    <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ content_for_header }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  </head>
+
+  <body class="gradient">
+
+    {% section 'header' %}
+
+
+    <main id="MainContent" class="main" role="main" tabindex="-1">
+      {% comment %} {{ content_for_layout }} {% endcomment %}
+      {% section 'banner' %}
+      {% section 'horizontal-div' %}
+      {% section 'product-feature-left' %}
+      {% section 'product-list' %}
+      {% section 'product-feature-right' %}
+      {% section 'services' %}
+    </main>
+
+    {% section 'footer' %}
+
+    <!-- Core -->
+    {{ 'jquery.min.js'  | asset_url | script_tag }}
+    {{ 'popper.min.js'  | asset_url | script_tag }}
+    {{ 'bootstrap.min.js'  | asset_url | script_tag }}
+    
+    <!-- FontAwesome 5 -->
+    {{ 'fontawesome-all.min.js'  | asset_url | script_tag }}
+    <!-- Theme JS -->
+    {{ 'theme.js'  | asset_url | script_tag }}
+
+
+  </body>
+</html>
